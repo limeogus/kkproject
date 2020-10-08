@@ -1,0 +1,61 @@
+NodeJS
+이벤트 기반의 비동기 I/O 프레임웍크
+
+모듈 시스템
+ㆍ노드는 파일형태로 모듈을 관리할 수 있는 CommonJS로 구현
+
+1.기본 모듈
+const util = require('util')
+
+const name = 'World'
+const msg = util.format('Hello %s', name)
+console.log(msg) // "Hello World"
+
+2.사용자 모듈
+//msth.js
+const math = {
+    add(a,b){
+        return a + b
+    }
+}
+module.exports = math
+
+//index.js
+const math = require('./math)
+console.log(math.add(1,2)) //3
+
+비동기 세계
+ㆍ노드는 기본적으로 비동기 동작
+ㆍreadFile() vs readFileSync()
+
+readFileSync()
+//text.text
+테스트 파일입니다.
+
+//index.js
+const fs = require('fs')
+
+const file = fs.readFileSync('test.txt', {
+    encoding: 'utf8'
+})
+console.log(file) //테스트 파일입니다.
+
+readFile()
+const fs = require('fs')
+const file = fs.readFile('test.txt', {
+    encoding : 'utf8'
+} (err, data) => console.log(file)) //테스트 파일입니다.
+
+const fs = require('fs')
+
+----------------------------------------------
+const callback = (err, file) =>{
+    console.log(file)
+}
+
+const file = fs.readFile('text.txt', {
+    encoding : 'utf8'
+}, callback) 
+
+
+//console.log(file) //테스트 파일입니다.
