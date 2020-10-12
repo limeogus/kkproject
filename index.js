@@ -1,23 +1,17 @@
-const http = require('http');
+const express = require('express')
+const logger = require('morgan')
+const app = express()
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const mw =  (req, res, next) =>{
+    throw Error('error!')
+}
 
-const server = http.createServer((req, res) => {
-    if(req.url ==='/'){
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        res.end('Hello World');
-    }else if(req.url==='/users'){
-        const users = [{name:'Alice'}, {name:'beck'}
-        ]
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(users));
-    }
+const errorMv = (err, req, res, next) =>{
+    console.log(err.message)
+}
 
-});
+app.use(logger('dev'))
+app.use(mw)
+app.use(errorMv)
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(3000, () => console.log('running'))
