@@ -81,3 +81,10 @@ express 모듈 설치
 
 logger
 npm i morgan
+
+--배포방법
+npm init
+
+npm을 통한 서버 구동
+1.start 설정 후
+2.npm start
