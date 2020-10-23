@@ -88,3 +88,17 @@ npm init
 npm을 통한 서버 구동
 1.start 설정 후
 2.npm start
+
+
+
+테스트 주도 개발
+TDD로 개발하자!
+mocha : node 테스트 모듈
+ npm i mocha --save-dev
+
+should : 검증 모듈 (assert와 동일하나 가독성이 좋음!)
+ npm i should --save-dev
+
+superTest : 통합테스트, api를 테스트를 해줄수있음!
+ npm i superTest
+
