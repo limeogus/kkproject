@@ -102,3 +102,17 @@ should : 검증 모듈 (assert와 동일하나 가독성이 좋음!)
 superTest : 통합테스트, api를 테스트를 해줄수있음!
  npm i superTest
 
+
+첫 API 테스트 만들기
+성공
+ - 유저 객체를 담은 배열로 응답한다.
+ - 최대 limit 갯수만큼 응답한다.
+
+실패
+ - limit이 숫자형이 아니면 400을 응답한다.
+ - offset이 숫자형이 아니면 400을 응답한다.
+
+ 데이터를 넘기는 방식
+ 쿼리 문자열
+ /user/{limit: 19} : post메소드에서 많이 사용
+ get /users?limit=2 
