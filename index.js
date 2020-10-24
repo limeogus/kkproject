@@ -12,21 +12,33 @@ app.get('/users', (req, res) => {
     
     req.query.limit = req.query.limit || 10 // 없을 경우 defalut = 10
     const limit = parseInt(req.query.limit, 10)
-    
-    // todo
-    //if(limit =="NaN"){ 
+
+    //사용자 목록 조회
     if(Number.isNaN(limit)){
         res.status(400).end()
-
     }else{
 
         res.json(users.slice(0, limit))
     }
-    //console.log(limit)
 
 })
+app.get('/users/:id', (req, res) =>{
 
-app.listen(3000, () => console.log('running'))
+    //id 값을 얻어낸다
+    const id = parseInt(req.params.id, 10)
+    const user = users.filter(user => user.id === id)[0]
+    
+    //console.log(id+ ' : ' +user)
+    if(Number.isNaN(id)){  
+        return res.status(400).end()
 
+    }else if(!user){ // == undefined
+        return res.status(404).end()
+    
+    }else{
+        res.json(user)
 
+    }
+
+}) 
 module.exports = app
