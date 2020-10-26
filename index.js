@@ -1,7 +1,7 @@
 const express = require('express')
 const logger = require('morgan')
 const app = express()
-const users = [
+let users = [
     {id : 1 , name: 'Alice'},
     {id : 2 , name : 'Bek'},
     {id : 3 , name : 'Chris'}
@@ -37,8 +37,21 @@ app.get('/users/:id', (req, res) =>{
     
     }else{
         res.json(user)
-
     }
 
-}) 
+})
+app.delete('/users/:id', (req, res)=>{
+    const id = parseInt(req.params.id, 10)
+
+    if(Number.isNaN(id)){
+        return res.status(400).end()
+    }
+    else{
+        users = users.filter(user => user.id !== id)
+        return res.status(204).end()
+    }
+
+})
+
+
 module.exports = app
